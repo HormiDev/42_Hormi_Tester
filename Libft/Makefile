@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/23 03:19:24 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/01/26 02:14:04 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/01/28 16:58:44 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,15 +26,45 @@ SRC =	test_isalpha.c \
 
 LIBFT = libft.a
 
-all: $(SRC:.c=$(EXTENSION)) exec
+SRC_DIR = src
 
-$(SRC:.c=$(EXTENSION)): %$(EXTENSION): %.c $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $< $(LIBFT)
+OBJ_DIR = obj
 
-clean:
-	rm -f $(SRC:.c=$(EXTENSION))
+TEST_DIR = tests
 
-fclean: clean
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
-exec:
-	for test in $(SRC:.c=$(EXTENSION)); do ./$$test; done
+TEST = $(addprefix $(TEST_DIR)/, $(SRC:.c=$(EXTENSION)))
+
+RED = \033[0;31m
+GREEN = \033[0;32m
+NC = \033[0m
+CIAN = \033[0;36m
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "${GREEN}Compiled $<${NC}"
+
+$(TEST_DIR)/%$(EXTENSION): $(OBJ_DIR)/%.o
+	@mkdir -p $(TEST_DIR)
+	@$(CC) $(CFLAGS) $< $(LIBFT) -o $@
+	@if [ -f $@ ]; then \
+		echo "${GREEN}Compiled $@${NC}"; \
+	else \
+		echo "${RED}Failed to compile $@${NC}"; \
+	fi
+
+all: $(OBJ) clean_test $(TEST)
+	@echo "All tests compiled"
+
+clean_obj:
+	@rm -f $(OBJ)
+	@echo "${RED}All objects cleaned${NC}"
+
+clean_test:
+	@rm -f $(TEST)
+	@echo "${RED}All tests cleaned${NC}"
+
+clean: clean_obj clean_test
+
