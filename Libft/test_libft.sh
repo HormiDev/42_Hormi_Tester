@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/28 17:28:13 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/01/28 18:44:40 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/01/29 01:52:09 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 
 # Variables
-TESTS_DIR="tests"
+TESTS_DIR="$(dirname "$0")/tests"
 
 # Function_tests
 test_isalpha()
@@ -86,18 +86,51 @@ test_tolower()
 
 run_tests()
 {
-	make > /dev/null
+	make -C "$(dirname "$0")" > /dev/null
 	if [ $? -ne 0 ]; then
 		echo -e "${RED}Compilation failed${NC}"
 		exit 1
 	fi
-	test_isalpha
-	test_isdigit
-	test_isalnum
-	test_isascii
-	test_isprint
-	test_toupper
-	test_tolower
+
+	case "$1" in
+		isalpha)
+			shift
+			test_isalpha "$@"
+			;;
+		isdigit)
+			shift
+			test_isdigit "$@"
+			;;
+		isalnum)
+			shift
+			test_isalnum "$@"
+			;;
+		isascii)
+			shift
+			test_isascii "$@"
+			;;
+		isprint)
+			shift
+			test_isprint "$@"
+			;;
+		toupper)
+			shift
+			test_toupper "$@"
+			;;
+		tolower)
+			shift
+			test_tolower "$@"
+			;;
+		*)
+			test_isalpha "$@"
+			test_isdigit "$@"
+			test_isalnum "$@"
+			test_isascii "$@"
+			test_isprint "$@"
+			test_toupper "$@"
+			test_tolower "$@"
+			;;
+	esac
 }
 
-run_tests
+run_tests "$@"

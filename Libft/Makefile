@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/23 03:19:24 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/01/28 16:58:44 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/01/29 01:49:05 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRC =	test_isalpha.c \
 		test_tolower.c \
 
 LIBFT = libft.a
+
+LIBFT_DIR = $(PWD)
 
 SRC_DIR = src
 
@@ -48,7 +50,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 $(TEST_DIR)/%$(EXTENSION): $(OBJ_DIR)/%.o
 	@mkdir -p $(TEST_DIR)
-	@$(CC) $(CFLAGS) $< $(LIBFT) -o $@
+	@$(CC) $(CFLAGS) $< $(LIBFT_DIR)/$(LIBFT) -o $@
 	@if [ -f $@ ]; then \
 		echo "${GREEN}Compiled $@${NC}"; \
 	else \
@@ -56,6 +58,7 @@ $(TEST_DIR)/%$(EXTENSION): $(OBJ_DIR)/%.o
 	fi
 
 all: $(OBJ) clean_test $(TEST)
+	@echo $(LIBFT_DIR)
 	@echo "All tests compiled"
 
 clean_obj:
