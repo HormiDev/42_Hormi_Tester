@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/30 21:06:24 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/01/30 21:30:40 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/01/30 21:35:22 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 
 update_hormi_tester() {
-	echo "${YELLOW}Updating Hormi_Tester...${NC}"
+	echo -e "${YELLOW}Updating Hormi_Tester...${NC}"
 	if [ ! -d "$INSTALL_DIR" ]; then
 		echo "Hormi_Tester repository not found."
 		read -p "Do you want to install it? (y/n): " choice
@@ -31,7 +31,7 @@ update_hormi_tester() {
 		fi
 	fi
 	(cd "$INSTALL_DIR" && git pull)
-	echo "${GREEN}Hormi_Tester has been updated.${NC}"
+	echo -e "${GREEN}Hormi_Tester has been updated.${NC}"
 }
 
 update_hormi_tester
