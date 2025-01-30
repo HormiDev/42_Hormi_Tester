@@ -1,0 +1,11 @@
+
+ALIAS
+	hormi_tester
+	hormi
+
+FLAGS
+	-d	--detail		
+	-i	--irregular		
+	-e	--error			
+
+ARGUMENTS_FOR_HELP

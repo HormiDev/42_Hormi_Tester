@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    uninstall.sh                                       :+:      :+:    :+:    #
+#    update.sh                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/29 03:24:59 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/01/30 16:34:11 by ide-dieg         ###   ########.fr        #
+#    Created: 2025/01/30 21:06:24 by ide-dieg          #+#    #+#              #
+#    Updated: 2025/01/30 21:16:57 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,21 @@
 INSTALL_DIR="$HOME/42_Hormi_Tester"
 
 # Colors
-RED='\033[0;31m'
+YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-echo "${RED}Uninstalling Hormi_Tester...${NC}"
-rm -rf "$INSTALL_DIR"
-sed -i '/alias hormi_tester=/d' ~/.bashrc
-sed -i '/alias hormi_tester=/d' ~/.zshrc
-sed -i '/alias hormi=/d' ~/.bashrc
-sed -i '/alias hormi=/d' ~/.zshrc
-echo "${GREEN}Hormi_Tester has been uninstalled.${NC}"
+echo "${YELLOW}Updating Hormi_Tester...${NC}"
+# Check if the repository exists
+if [ ! -d "$INSTALL_DIR" ]; then
+	echo "Hormi_Tester repository not found."
+	read -p "Do you want to install it? (y/n): " choice
+	if [ "$choice" = "y" ]; then
+		bash -c "$(curl -fsSL https://raw.github.com/HormiDev/42_Hormi_Tester/master/bin/install.sh)"
+	else
+		echo "Installation cancelled."
+		exit 1
+	fi
+fi
+(cd "$INSTALL_DIR" && git pull)
+echo "${GREEN}Hormi_Tester has been updated.${NC}"

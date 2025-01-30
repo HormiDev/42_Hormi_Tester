@@ -45,42 +45,42 @@ print_header
 REPO_URL="https://github.com/HormiDev/42_Hormi_Tester.git"
 INSTALL_DIR="$HOME/42_Hormi_Tester"
 
-echo -e "${CYAN}${BOLD}Instalador de Hormi_Tester${NC}"
+echo -e "${CYAN}${BOLD}Hormi_Tester Installer${NC}"
 
-# Verifica si el repo ya esta instalado
+# Check if the repo is already installed
 if [ -d "$INSTALL_DIR" ]; then
-	echo -e "${RED}Hormi_Tester ya está instalado en ${INSTALL_DIR}.${NC}"
-	echo -e "${CYAN}¿Deseas reinstalar Hormi_Tester?${NC}"
-	select yn in "Sí" "No"; do
+	echo -e "${RED}Hormi_Tester is already installed in ${INSTALL_DIR}.${NC}"
+	echo -e "${CYAN}Do you want to reinstall Hormi_Tester?${NC}"
+	select yn in "Yes" "No"; do
 		case $yn in
-			Sí ) echo -e "${CYAN}Eliminando el directorio ${INSTALL_DIR}...${NC}"; rm -rf "$INSTALL_DIR"; break;;
-			No ) echo -e "${GREEN}Instalación cancelada.${NC}"; exit;;
+			Yes ) echo -e "${CYAN}Removing the directory ${INSTALL_DIR}...${NC}"; rm -rf "$INSTALL_DIR"; break;;
+			No ) echo -e "${GREEN}Installation canceled.${NC}"; exit;;
 		esac
 	done
 fi
 
-# Clonar el repositorio
-echo -e "${CYAN}Clonando el repositorio ${REPO_URL} en ${INSTALL_DIR}...${NC}"
-git clone "$REPO_URL" "$INSTALL_DIR" > /dev/null 2>&1 || { echo -e "${RED}Error al clonar el repositorio.${NC}"; exit 1; }
-echo -e "${GREEN}Repositorio clonado.${NC}"
+# Clone the repository
+echo -e "${CYAN}Cloning the repository ${REPO_URL} into ${INSTALL_DIR}...${NC}"
+git clone "$REPO_URL" "$INSTALL_DIR" > /dev/null 2>&1 || { echo -e "${RED}Error cloning the repository.${NC}"; exit 1; }
+echo -e "${GREEN}Repository cloned.${NC}"
 
 
-# Verificar si las dependencias ya están instaladas
+# Check if dependencies are already installed
 if ! dpkg -s build-essential >/dev/null 2>&1; then
-	echo "Instalando dependencias..."
+	echo "Installing dependencies..."
 	sudo apt-get install -y build-essential
 else
-	echo "Las dependencias ya están instaladas."
+	echo "Dependencies are already installed."
 fi
 
-# crear alias
-echo -e "${CYAN}Creando alias...${NC}"
+# Create alias
+echo -e "${CYAN}Creating alias...${NC}"
 if grep -q "alias hormi_tester=" ~/.bashrc || grep -q "alias hormi_tester=" ~/.zshrc; then
-	echo -e "${GREEN}El alias hormi_tester ya existe. Eliminando...${NC}"
+	echo -e "${GREEN}The hormi_tester alias already exists. Removing...${NC}"
 	sed -i '/alias hormi_tester=/d' ~/.bashrc
 	sed -i '/alias hormi_tester=/d' ~/.zshrc
 else
-	echo -e "${CYAN}Creando alias hormi_tester...${NC}"
+	echo -e "${CYAN}Creating hormi_tester alias...${NC}"
 fi
 
 if grep -q "alias hormi=" ~/.bashrc || grep -q "alias hormi=" ~/.zshrc; then
@@ -91,12 +91,12 @@ echo "alias hormi_tester='${INSTALL_DIR}/Hormi_Tester.sh'" >> ~/.bashrc
 echo "alias hormi_tester='${INSTALL_DIR}/Hormi_Tester.sh'" >> ~/.zshrc
 echo "alias hormi'=${INSTALL_DIR}/Hormi_Tester.sh'" >> ~/.bashrc
 echo "alias hormi'=${INSTALL_DIR}/Hormi_Tester.sh'" >> ~/.zshrc
-echo -e "${GREEN}Alias ${BOLD}hormi_tester${NC}${GREEN} creado.${NC}"
-echo -e "${GREEN}Alias ${BOLD}hormi${NC}${GREEN} creado.${NC}" 
-echo -e "${CYAN}Recargando el shell...${NC}"
+echo -e "${GREEN}Alias ${BOLD}hormi_tester${NC}${GREEN} created.${NC}"
+echo -e "${GREEN}Alias ${BOLD}hormi${NC}${GREEN} created.${NC}" 
+echo -e "${CYAN}Reloading the shell...${NC}"
 source ~/.zshrc > /dev/null 2>&1
 source ~/.bashrc > /dev/null 2>&1
-echo -e "${GREEN}Alias creado.${NC}"
+echo -e "${GREEN}Alias created.${NC}"
 
-# Mensaje de finalización
-echo -e "${GREEN}${BOLD}Hormi_Tester se ha instalado correctamente.${NC}"
+# Completion message
+echo -e "${GREEN}${BOLD}Hormi_Tester has been successfully installed.${NC}"

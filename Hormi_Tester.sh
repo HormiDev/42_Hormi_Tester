@@ -19,7 +19,7 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-print_header() {
+print_hormidev_header() {
 	echo -e "${RED}██╗██████╗ ███████╗    ██████╗ ██╗███████╗ ██████╗ ${BLUE}         ██╗  ██╗██████╗ "
 	echo -e "${RED}██║██╔══██╗██╔════╝    ██╔══██╗██║██╔════╝██╔════╝ ${BLUE}         ██║  ██║╚════██╗"
 	echo -e "${RED}██║██║  ██║█████╗█████╗██║  ██║██║█████╗  ██║  ███╗${BLUE}         ███████║ █████╔╝"
@@ -32,6 +32,10 @@ print_header() {
 	echo -e "${ORANGE}██╔══██║██║   ██║██╔══██╗██║╚██╔╝██║██║██║  ██║██╔══╝  ╚██╗ ██╔╝${GREEN}   ██╗   ██║"
 	echo -e "${ORANGE}██║  ██║╚██████╔╝██║  ██║██║ ╚═╝ ██║██║██████╔╝███████╗ ╚████╔╝ ${GREEN}   ╚═╝ ██╔═╝"
 	echo -e "${ORANGE}╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═════╝ ╚══════╝  ╚═══╝  ${GREEN}       ╚═╝  ${NC}"
+	print_header
+}
+
+print_header() {
 	echo -e "${GREEN} _  _   __  ____  _  _  __ ${RED}    ____  ____  ____  ____  ____  ____  ${NC}"
 	echo -e "${GREEN}/ )( \ /  \(  _ \( \/ )(  )${RED}   (_  _)(  __)/ ___)(_  _)(  __)(  _ \ ${NC}"
 	echo -e "${GREEN}) __ ((  O ))   // \/ \ )( ${RED}     )(   ) _) \___ \  )(   ) _)  )   / ${NC}"
@@ -39,17 +43,23 @@ print_header() {
 }
 
 execute_test() {
+	ARGUMENTS_FOR_HELP=("-h" "--help" "help" "h" "?" "man")
 	ARGUMENTS_FOR_LIBFT=("libft" "isalpha" "isdigit" "isalnum" "isascii" "isprint" "toupper" "tolower" "strlen" "memset" "bzero" "memcpy" "memccpy" "memmove" "memchr" "memcmp" "strlcpy" "strlcat" "strchr" "strrchr" "strncmp" "strnstr" "atoi" "calloc" "strdup")
 	local arg="$1"
 	if [[ " ${ARGUMENTS_FOR_LIBFT[@],,} " =~ " ${arg,,} " ]]; then
-		echo -e "${GREEN}Executing tests for ${arg}...${NC}"
+		print_header
+		echo -e "${GREEN}Executing tests for...${NC}"
 		${TESTER_DIR}/Libft/test_libft.sh "$@"
+	elif [[ " ${ARGUMENTS_FOR_HELP[@],,} " =~ " ${arg,,} " ]]; then
+		print_hormidev_header
+		cat ${TESTER_DIR}/man.txt
 	else
-		echo -e "${RED}Invalid argument: ${arg}${NC}"
+		print_hormidev_header
+		echo -e "${RED}unrecognized project...${NC}"
+		cat ${TESTER_DIR}/man.txt
 	fi
 }
 
-print_header
 execute_test "$@"
 
 
