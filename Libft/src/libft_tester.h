@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:31:05 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/01/28 14:19:40 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/01/30 00:59:02 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define COLOR_GREEN   "\x1b[32m"
 # define COLOR_YELLOW  "\x1b[33m"
 # define COLOR_BLUE    "\x1b[34m"
+# define COLOR_CYAN    "\x1b[36m"
 # define COLOR_MAGENTA "\x1b[35m"
 # define COLOR_BOLD    "\x1b[1m"
 

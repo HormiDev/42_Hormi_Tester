@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/28 17:28:13 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/01/29 03:33:07 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/01/30 01:34:58 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,15 @@ test_tolower()
 	fi
 }
 
+test_strlen()
+{
+	if [ -f "$TESTS_DIR/test_strlen.test" ]; then
+		$TESTS_DIR/test_strlen.test "$@"
+	else
+		echo -e "${RED}strlen test is not compiled${NC}"
+	fi
+}
+
 run_tests()
 {
 	make -C "$(dirname "$0")" > /dev/null
@@ -121,6 +130,10 @@ run_tests()
 			shift
 			test_tolower "$@"
 			;;
+		strlen)
+			shift
+			test_strlen "$@"
+			;;
 		*)
 			test_isalpha "$@"
 			test_isdigit "$@"
@@ -129,6 +142,7 @@ run_tests()
 			test_isprint "$@"
 			test_toupper "$@"
 			test_tolower "$@"
+			test_strlen "$@"
 			;;
 	esac
 }

@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 03:05:59 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/01/23 03:07:06 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/01/30 02:19:46 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int	normal_test(void)
 {
-	int i = 0;
+	int i = -1;
 	int original_isascii;
 	int libft_isascii;
 	int ok = 0;
@@ -34,19 +34,18 @@ static int	normal_test(void)
 			ko++;
 		i++;
 	}
-	printf("%s%sft_isascii:%s ", COLOR_BOLD, COLOR_BLUE, COLOR_RESET);
 	if (ko > 0)
-		printf("%s[ko]%s (%d/512)\n", COLOR_RED, COLOR_RESET, (ok * 2 + iregular_ok));
+		printf("%s[ko]%s (%d/514)\n", COLOR_RED, COLOR_RESET, (ok * 2 + iregular_ok));
 	else if (iregular_ok > 0)
-		printf("%s[ok]%s (%d/512)\n", COLOR_YELLOW, COLOR_RESET, (ok * 2 + iregular_ok));
+		printf("%s[ok]%s (%d/514)\n", COLOR_YELLOW, COLOR_RESET, (ok * 2 + iregular_ok));
 	else
-		printf("%s[ok]%s (%d/512)\n", COLOR_GREEN, COLOR_RESET, (ok * 2 + iregular_ok));
+		printf("%s[ok]%s (%d/514)\n", COLOR_GREEN, COLOR_RESET, (ok * 2 + iregular_ok));
 	return (ko * 2 + iregular_ok);
 }
 
 static void	detail_test(void)
 {
-	int i = 0;
+	int i = -1;
 	int original_isascii;
 	int libft_isascii;
 	
@@ -78,7 +77,7 @@ static void	detail_test(void)
 
 static void test_irregular_cases(void)
 {
-	int i = 0;
+	int i = -1;
 	int original_isascii;
 	int libft_isascii;
 	
@@ -102,7 +101,7 @@ static void test_irregular_cases(void)
 
 static void test_error_cases(void)
 {
-	int i = 0;
+	int i = -1;
 	int original_isascii;
 	int libft_isascii;
 	
@@ -129,16 +128,17 @@ int main(int argc, char **argv)
 	int	result;
 	int i = 1;
 
+	printf("%s%s%-16s%s ", COLOR_BOLD, COLOR_CYAN, "ft_isascii:", COLOR_RESET);
 	result = normal_test();
 	if (argc > 1)
 	{
 		while (i < argc)
 		{
-			if ((!strcmp(argv[i], "-d") || !strcmp(argv[i], "--detail")) && result < 512)
+			if ((!strcmp(argv[i], "-d") || !strcmp(argv[i], "--detail")) && result < 514)
 				detail_test();
-			if ((!strcmp(argv[i], "-i") || !strcmp(argv[i], "--irregular")) && result < 512)
+			if ((!strcmp(argv[i], "-i") || !strcmp(argv[i], "--irregular")) && result < 514)
 				test_irregular_cases();
-			if ((!strcmp(argv[i], "-e") || !strcmp(argv[i], "--error")) && result < 512)
+			if ((!strcmp(argv[i], "-e") || !strcmp(argv[i], "--error")) && result < 514)
 				test_error_cases();
 			i++;
 		}

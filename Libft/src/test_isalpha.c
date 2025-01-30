@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 00:34:36 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/01/23 02:51:30 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/01/30 01:13:42 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	normal_test(void)
 			ko++;
 		i++;
 	}
-	printf("%s%sft_isalpha:%s ", COLOR_BOLD, COLOR_BLUE, COLOR_RESET);
 	if (ko > 0)
 		printf("%s[ko]%s (%d/512)\n", COLOR_RED, COLOR_RESET, (ok * 2 + iregular_ok));
 	else if (iregular_ok > 0)
@@ -128,6 +127,7 @@ int main(int argc, char **argv)
 	int	result;
 	int i = 1;
 
+	printf("%s%s%-16s%s ", COLOR_BOLD, COLOR_CYAN, "ft_isalpha:", COLOR_RESET);
 	result = normal_test();
 	if (argc > 1)
 	{
