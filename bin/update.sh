@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/30 21:06:24 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/01/30 21:16:57 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/01/30 21:30:40 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,17 +18,20 @@ YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-echo "${YELLOW}Updating Hormi_Tester...${NC}"
-# Check if the repository exists
-if [ ! -d "$INSTALL_DIR" ]; then
-	echo "Hormi_Tester repository not found."
-	read -p "Do you want to install it? (y/n): " choice
-	if [ "$choice" = "y" ]; then
-		bash -c "$(curl -fsSL https://raw.github.com/HormiDev/42_Hormi_Tester/master/bin/install.sh)"
-	else
-		echo "Installation cancelled."
-		exit 1
+update_hormi_tester() {
+	echo "${YELLOW}Updating Hormi_Tester...${NC}"
+	if [ ! -d "$INSTALL_DIR" ]; then
+		echo "Hormi_Tester repository not found."
+		read -p "Do you want to install it? (y/n): " choice
+		if [ "$choice" = "y" ]; then
+			bash -c "$(curl -fsSL https://raw.github.com/HormiDev/42_Hormi_Tester/master/bin/install.sh)"
+		else
+			echo "Installation cancelled."
+			exit 1
+		fi
 	fi
-fi
-(cd "$INSTALL_DIR" && git pull)
-echo "${GREEN}Hormi_Tester has been updated.${NC}"
+	(cd "$INSTALL_DIR" && git pull)
+	echo "${GREEN}Hormi_Tester has been updated.${NC}"
+}
+
+update_hormi_tester
