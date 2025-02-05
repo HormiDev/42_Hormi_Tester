@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:31:05 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/01/30 00:59:02 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/02/05 01:33:15 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <stdio.h>
 # include <ctype.h>
 # include <string.h>
+# include <signal.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <stdlib.h>
 
 # define COLOR_RESET   "\x1b[0m"
 # define COLOR_RED     "\x1b[31m"
