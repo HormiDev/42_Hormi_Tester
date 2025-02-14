@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 22:08:52 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/02/05 03:35:18 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/02/14 03:59:27 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void test_isalpha(int d, int i, int e)
 	int 	ok = 0;
 	int		iregular_ok = 0;
 	int		ko = 0;
+	int 	original_int;
+	int		libft_int;
 
 	original = (char *)malloc(1024);
 	libft = (char *)malloc(1024);
@@ -69,11 +71,28 @@ void test_isalpha(int d, int i, int e)
 	while (arg < 256)
 	{
 		exec_function(&original, arg, &isalpha);
+		fflush(stdout);
 		exec_function(&libft, arg, &ft_isalpha);
-		if (strcmp(original, libft) != 0)
+		fflush(stdout);
+		original_int = atoi(original);
+		libft_int = atoi(libft);
+		if (original_int == libft_int)
+		{
+			ok++;
+			if (d)
+			{
+				if (isprint(arg))
+					printf("char: (%c)%s[ok]%s[isalpha: %s][ft_isalpha: %s]\n", arg, COLOR_GREEN, COLOR_RESET, original, libft);
+				else
+					printf("char: (%d)%s[ok]%s[isalpha: %s][ft_isalpha: %s]\n", arg, COLOR_GREEN, COLOR_RESET, original, libft);
+			}
+			
+		}
+		else
 		{
 			if (strcmp(libft, "segfault") == 0)
 			{
+				ko++;
 				if (e || d)
 				{
 					if (isprint(arg))
@@ -81,10 +100,10 @@ void test_isalpha(int d, int i, int e)
 					else
 						printf("char: (%d)%s[ko]%s[isalpha: %s][ft_isalpha: %s]\n", arg, COLOR_RED, COLOR_RESET, original, libft);
 				}
-				ko++;
 			}
-			else if ((atoi(original) && atoi(libft)) || (!atoi(original) && !atoi(libft)))
+			else if ((original_int > 0 && libft_int > 0) || (original_int < 0 && libft_int < 0))
 			{
+				iregular_ok++;
 				if (i || d)
 				{
 					if (isprint(arg))
@@ -92,7 +111,6 @@ void test_isalpha(int d, int i, int e)
 					else
 						printf("char: (%d)%s[ok]%s[isalpha: %s][ft_isalpha: %s]\n", arg, COLOR_YELLOW, COLOR_RESET, original, libft);
 				}
-				iregular_ok++;
 			}
 			else
 			{
@@ -104,17 +122,6 @@ void test_isalpha(int d, int i, int e)
 					else
 						printf("char: (%d)%s[ko]%s[isalpha: %s][ft_isalpha: %s]\n", arg, COLOR_RED, COLOR_RESET, original, libft);
 				}
-			}
-		}
-		else
-		{
-			ok++;
-			if (d)
-			{
-				if (isprint(arg))
-					printf("char: (%c)%s[ok]%s[isalpha: %s][ft_isalpha: %s]\n", arg, COLOR_GREEN, COLOR_RESET, original, libft);
-				else
-					printf("char: (%d)%s[ok]%s[isalpha: %s][ft_isalpha: %s]\n", arg, COLOR_GREEN, COLOR_RESET, original, libft);
 			}
 		}
 		arg++;
