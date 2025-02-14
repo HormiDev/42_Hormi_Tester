@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 22:08:52 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/02/14 03:59:27 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/02/15 00:50:51 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ void test_isalpha(int d, int i, int e)
 	arg = -256;
 	while (arg < 256)
 	{
+		fflush(stdout);
 		exec_function(&original, arg, &isalpha);
 		fflush(stdout);
 		exec_function(&libft, arg, &ft_isalpha);
-		fflush(stdout);
 		original_int = atoi(original);
 		libft_int = atoi(libft);
 		if (original_int == libft_int)
@@ -90,7 +90,7 @@ void test_isalpha(int d, int i, int e)
 		}
 		else
 		{
-			if (strcmp(libft, "segfault") == 0)
+			if (strcmp(libft, "segfault") == 0 || (strcmp(original, "segfault") == 0))
 			{
 				ko++;
 				if (e || d)
@@ -129,11 +129,11 @@ void test_isalpha(int d, int i, int e)
 	if (!d && !i && !e)
 	{
 		if (ko > 0)
-			printf("%s[ko]%s (%d/1024)\n", COLOR_RED, COLOR_RESET, (ok * 2 + iregular_ok));
+			printf("%s[ko]%s (%4d/1024)", COLOR_RED, COLOR_RESET, (ok * 2 + iregular_ok));
 		else if (iregular_ok > 0)
-			printf("%s[ok]%s (%d/1024)\n", COLOR_YELLOW, COLOR_RESET, (ok * 2 + iregular_ok));
+			printf("%s[ok]%s (%4d/1024)", COLOR_YELLOW, COLOR_RESET, (ok * 2 + iregular_ok));
 		else
-			printf("%s[ok]%s (%d/1024)\n", COLOR_GREEN, COLOR_RESET, (ok * 2 + iregular_ok));
+			printf("%s[ok]%s (%4d/1024)", COLOR_GREEN, COLOR_RESET, (ok * 2 + iregular_ok));
 	}
 }
 
@@ -146,6 +146,7 @@ int main(int argc, char **argv)
 
 	printf("%s%s%-16s%s ", COLOR_BOLD, COLOR_CYAN, "ft_isalpha:", COLOR_RESET);
 	test_isalpha(d, i, e);
+	printf("\n");
 	while (count < argc)
 	{
 		if ((!strcmp(argv[count], "-d") || !strcmp(argv[count], "--detail")))

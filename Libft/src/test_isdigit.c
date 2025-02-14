@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 02:56:41 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/02/05 03:39:11 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/02/15 00:50:30 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,37 @@ void test_isdigit(int d, int i, int e)
 	int 	ok = 0;
 	int		iregular_ok = 0;
 	int		ko = 0;
+	int 	original_int;
+	int		libft_int;
 
 	original = (char *)malloc(1024);
 	libft = (char *)malloc(1024);
 	arg = -256;
 	while (arg < 256)
 	{
+		fflush(stdout);
 		exec_function(&original, arg, &isdigit);
+		fflush(stdout);
 		exec_function(&libft, arg, &ft_isdigit);
-		if (strcmp(original, libft) != 0)
+		original_int = atoi(original);
+		libft_int = atoi(libft);
+		if (original_int == libft_int)
 		{
-			if (strcmp(libft, "segfault") == 0)
+			ok++;
+			if (d)
 			{
+				if (isprint(arg))
+					printf("char: (%c)%s[ok]%s[isdigit: %s][ft_isdigit: %s]\n", arg, COLOR_GREEN, COLOR_RESET, original, libft);
+				else
+					printf("char: (%d)%s[ok]%s[isdigit: %s][ft_isdigit: %s]\n", arg, COLOR_GREEN, COLOR_RESET, original, libft);
+			}
+			
+		}
+		else
+		{
+			if (strcmp(libft, "segfault") == 0 || (strcmp(original, "segfault") == 0))
+			{
+				ko++;
 				if (e || d)
 				{
 					if (isprint(arg))
@@ -81,10 +100,10 @@ void test_isdigit(int d, int i, int e)
 					else
 						printf("char: (%d)%s[ko]%s[isdigit: %s][ft_isdigit: %s]\n", arg, COLOR_RED, COLOR_RESET, original, libft);
 				}
-				ko++;
 			}
-			else if ((atoi(original) && atoi(libft)) || (!atoi(original) && !atoi(libft)))
+			else if ((original_int > 0 && libft_int > 0) || (original_int < 0 && libft_int < 0))
 			{
+				iregular_ok++;
 				if (i || d)
 				{
 					if (isprint(arg))
@@ -92,7 +111,6 @@ void test_isdigit(int d, int i, int e)
 					else
 						printf("char: (%d)%s[ok]%s[isdigit: %s][ft_isdigit: %s]\n", arg, COLOR_YELLOW, COLOR_RESET, original, libft);
 				}
-				iregular_ok++;
 			}
 			else
 			{
@@ -106,27 +124,16 @@ void test_isdigit(int d, int i, int e)
 				}
 			}
 		}
-		else
-		{
-			ok++;
-			if (d)
-			{
-				if (isprint(arg))
-					printf("char: (%c)%s[ok]%s[isdigit: %s][ft_isdigit: %s]\n", arg, COLOR_GREEN, COLOR_RESET, original, libft);
-				else
-					printf("char: (%d)%s[ok]%s[isdigit: %s][ft_isdigit: %s]\n", arg, COLOR_GREEN, COLOR_RESET, original, libft);
-			}
-		}
 		arg++;
 	}
 	if (!d && !i && !e)
 	{
 		if (ko > 0)
-			printf("%s[ko]%s (%d/1024)\n", COLOR_RED, COLOR_RESET, (ok * 2 + iregular_ok));
+			printf("%s[ko]%s (%4d/1024)", COLOR_RED, COLOR_RESET, (ok * 2 + iregular_ok));
 		else if (iregular_ok > 0)
-			printf("%s[ok]%s (%d/1024)\n", COLOR_YELLOW, COLOR_RESET, (ok * 2 + iregular_ok));
+			printf("%s[ok]%s (%4d/1024)", COLOR_YELLOW, COLOR_RESET, (ok * 2 + iregular_ok));
 		else
-			printf("%s[ok]%s (%d/1024)\n", COLOR_GREEN, COLOR_RESET, (ok * 2 + iregular_ok));
+			printf("%s[ok]%s (%4d/1024)", COLOR_GREEN, COLOR_RESET, (ok * 2 + iregular_ok));
 	}
 }
 
@@ -139,6 +146,7 @@ int main(int argc, char **argv)
 
 	printf("%s%s%-16s%s ", COLOR_BOLD, COLOR_CYAN, "ft_isdigit:", COLOR_RESET);
 	test_isdigit(d, i, e);
+	printf("\n");
 	while (count < argc)
 	{
 		if ((!strcmp(argv[count], "-d") || !strcmp(argv[count], "--detail")))
