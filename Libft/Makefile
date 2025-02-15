@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/23 03:19:24 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/02/15 00:01:10 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/02/15 23:21:02 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC =	test_isalpha.c \
 		test_toupper.c \
 		test_tolower.c \
 		test_strlen.c \
+		test_strchr.c \
 
 LIBFT = libft.a
 
