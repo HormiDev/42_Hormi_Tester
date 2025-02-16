@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 01:31:05 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/02/05 01:33:15 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/02/16 12:35:11 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_TESTER_H
 
 # include "libft.h"
+# include <limits.h>
 # include <stdio.h>
 # include <ctype.h>
 # include <string.h>
