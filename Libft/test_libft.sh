@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/28 17:28:13 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/02/15 23:22:22 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/02/16 01:42:50 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,15 @@ test_strchr()
 	fi
 }
 
+test_strrchr()
+{
+	if [ -f "$TESTS_DIR/test_strrchr.test" ]; then
+		$TESTS_DIR/test_strrchr.test "$@"
+	else
+		echo -e "${RED}strrchr test is not compiled${NC}"
+	fi
+}
+
 run_tests()
 {
 	make -C "$(dirname "$0")" > /dev/null
@@ -147,6 +156,10 @@ run_tests()
 			shift
 			test_strchr "$@"
 			;;
+		strrchr)
+			shift
+			test_strrchr "$@"
+			;;
 		*)
 			test_isalpha "$@"
 			test_isdigit "$@"
@@ -157,6 +170,7 @@ run_tests()
 			test_tolower "$@"
 			test_strlen "$@"
 			test_strchr "$@"
+			test_strrchr "$@"
 			;;
 	esac
 }
