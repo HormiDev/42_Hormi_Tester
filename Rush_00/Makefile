@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/23 00:40:25 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/02/23 17:04:36 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/02/23 21:11:08 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRC_RUSH_02 = $(RUSH_DIR)ex00/rush02.c $(RUSH_DIR)ex00/ft_putchar.c main.c
 SRC_RUSH_03 = $(RUSH_DIR)ex00/rush03.c $(RUSH_DIR)ex00/ft_putchar.c main.c
 SRC_RUSH_04 = $(RUSH_DIR)ex00/rush04.c $(RUSH_DIR)ex00/ft_putchar.c main.c
 
-all: build_rush_calculator build_tests
+all: build_rush_calculator build_tests build_all_rush
 
 build_rush_calculator:
 	@if [ ! -d $(TEST_DIR) ]; then \
@@ -81,6 +81,8 @@ rush_04:
 	rm -f $(RUSH_DIR)rush04.out
 	$(CC) $(CFLAGS) $(SRC_RUSH_04) -o $(RUSH_DIR)rush04.out
 
+build_all_rush: rush_00 rush_01 rush_02 rush_03 rush_04
+
 fclean: clean
 	rm -fr $(TEST_DIR)
 
@@ -90,3 +92,5 @@ clean:
 	rm -f $(RUSH_DIR)rush02.out
 	rm -f $(RUSH_DIR)rush03.out
 	rm -f $(RUSH_DIR)rush04.out
+
+re: fclean all

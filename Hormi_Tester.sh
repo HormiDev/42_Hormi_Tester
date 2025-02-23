@@ -45,6 +45,7 @@ print_header() {
 execute_test() {
 	ARGUMENTS_FOR_HELP=("-h" "--help" "help" "h" "?" "man")
 	ARGUMENTS_FOR_LIBFT=("libft" "isalpha" "isdigit" "isalnum" "isascii" "isprint" "toupper" "tolower" "strlen" "memset" "bzero" "memcpy" "memccpy" "memmove" "memchr" "memcmp" "strlcpy" "strlcat" "strchr" "strrchr" "strncmp" "strnstr" "atoi" "calloc" "strdup")
+	ARGUMENTS_FOR_RUSH00=("rush00" "rush0" "rush_00" "rush 00", "rush")
 	local arg="$1"
 	if [[ " ${ARGUMENTS_FOR_LIBFT[@],,} " =~ " ${arg,,} " ]]; then
 		print_header
@@ -53,6 +54,10 @@ execute_test() {
 	elif [[ " ${ARGUMENTS_FOR_HELP[@],,} " =~ " ${arg,,} " ]]; then
 		print_hormidev_header
 		cat ${TESTER_DIR}/man.txt
+	elif [[ " ${ARGUMENTS_FOR_RUSH00[@],,} " =~ " ${arg,,} " ]]; then
+		print_header
+		echo -e "${GREEN}Executing tests for...${NC}"
+		${TESTER_DIR}/Rush_00/test_rush_00.sh "$@"
 	else
 		print_hormidev_header
 		echo -e "${RED}unrecognized project...${NC}"

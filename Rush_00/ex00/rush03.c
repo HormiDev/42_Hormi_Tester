@@ -22,7 +22,8 @@ void	rush(int x, int y)
 
 	if (x < 0 || y < 0)
 	{
-		write(1, "¡Eh, los números negativos no son bienvenidos aquí! 😄\n", 59);
+		return ;
+		//write(1, "¡Eh, los números negativos no son bienvenidos aquí! 😄\n", 59);
 	}
 	else
 	{

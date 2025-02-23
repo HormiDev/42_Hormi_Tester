@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rush01.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fatigarc <fatigarc@student.42madrid.comr>   +#+  +:+       +#+       */
+/*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 12:46:18 by fatigarc          #+#    #+#             */
-/*   Updated: 2023/11/12 21:09:41 by ide_dieg         ###   ########.fr       */
+/*   Updated: 2025/02/23 21:10:06 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	rush(int x, int y)
 
 	if (x < 0 || y < 0)
 	{
-		write(1, "¡Eh, los números negativos no son bienvenidos aquí! 😄\n", 59);
+		return ;
+		//write(1, "¡Eh, los números negativos no son bienvenidos aquí! 😄\n", 59);
 	}
 	else
 	{
