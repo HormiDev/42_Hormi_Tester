@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/23 17:07:11 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/02/23 21:34:32 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/02/24 01:46:13 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,42 @@ mandatory_rush()
 	$TESTS_DIR/calculate_rush_number.test "$user_input"
 }
 
+check_repo()
+{
+	expected_files=("ex00" ".git" ".gitignore")
+	expected_files_ex00=("main.c" "ft_putchar.c" "rush00.c" "rush01.c" "rush02.c" "rush03.c" "rush04.c")
+	unexpected_files_found=false
+
+	for file in ./* ./.*; do
+		filename=$(basename "$file")
+		if [[ ! " ${expected_files[@]} " =~ " ${filename} " ]] && [[ "$filename" != "." ]] && [[ "$filename" != ".." ]]; then
+			echo -e "${RED}Error: Unexpected file or directory found: ${filename}${NC}"
+			unexpected_files_found=true
+		fi
+	done
+
+	if [ -d "./ex00" ]; then
+		cd ex00
+		for file in ./* ./.*; do
+			filename=$(basename "$file")
+			if [[ ! " ${expected_files_ex00[@]} " =~ " ${filename} " ]] && [[ "$filename" != "." ]] && [[ "$filename" != ".." ]]; then
+				echo -e "${RED}Error: Unexpected file or directory found in ex00: ${filename}${NC}"
+				unexpected_files_found=true
+			fi
+		done
+		cd ..
+	elif [ ! -d "./ex00" ]; then
+		echo -e "${RED}Error: ex00 directory not found${NC}"
+		unexpected_files_found=true
+	fi
+
+	if [ "$unexpected_files_found" = false ]; then
+		echo -e "${GREEN}All expected files are present and no unexpected files found.${NC}"
+	fi
+}
+
+make clean -C "$(dirname "$0")" > /dev/null
+check_repo
 make -C "$(dirname "$0")" > /dev/null
 mandatory_rush
 test_rush
