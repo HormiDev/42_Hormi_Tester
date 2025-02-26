@@ -6,16 +6,11 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 20:42:40 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/02/16 00:54:20 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:56:23 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
-
-int ft_return(int c)
-{
-	return (c);
-}
 
 void segfault_handler(int signum)
 {
@@ -72,8 +67,6 @@ void test_strchr(int d, int i, int e)
 	int 		ok = 0;
 	int			iregular_ok = 0;
 	int			ko = 0;
-	int 		original_int;
-	int			libft_int;
 	int			count;
 	
 	t_args arg[12] = {
@@ -99,8 +92,6 @@ void test_strchr(int d, int i, int e)
 		exec_function(&original, arg[count].str, arg[count].c, &strchr);
 		fflush(stdout);
 		exec_function(&libft, arg[count].str, arg[count].c, &ft_strchr);
-		original_int = atoi(original);
-		libft_int = atoi(libft);
 		if (strcmp(original, libft) == 0)
 		{
 			ok++;

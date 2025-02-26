@@ -6,16 +6,11 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 01:14:44 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/02/15 00:57:05 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:56:33 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
-
-int ft_return(int c)
-{
-	return (c);
-}
 
 void segfault_handler(int signum)
 {
@@ -28,7 +23,7 @@ void exec_function(char **str, const char *arg, size_t (*ft)(const char *))
 {
 	int		pipe_fd[2];
 	pid_t	pid;
-	int		result;
+	size_t	result;
 	int		len;
 
 	if (pipe(pipe_fd) == -1)
@@ -44,7 +39,7 @@ void exec_function(char **str, const char *arg, size_t (*ft)(const char *))
 		close(pipe_fd[0]);
 		close(pipe_fd[1]);
 		result = ft(arg);
-		printf("%d", result);
+		printf("%zu", result);
 		exit(0);
 	}
 	else if (pid < 0)
@@ -66,8 +61,6 @@ void test_strlen(int d, int i, int e)
 	int 		ok = 0;
 	int			iregular_ok = 0;
 	int			ko = 0;
-	int 		original_int;
-	int			libft_int;
 	int			count;
 	char 	str1[128];
 	char 	str2[255];
@@ -99,12 +92,12 @@ void test_strlen(int d, int i, int e)
 	}
 	str2[count] = 0;
 	count = 0;
-	while (count < 511)
+	while (count < 510)
 	{
-		if (count - 254 < -1)
+		if (254 - count != 0)
 			str3[count] = count - 254;
 		else
-			str3[count] = count + 4;
+			str3[count] = count + 1;
 		count++;
 	}
 	str3[count] = 0;
@@ -118,8 +111,6 @@ void test_strlen(int d, int i, int e)
 		exec_function(&original, arg[count], &strlen);
 		fflush(stdout);
 		exec_function(&libft, arg[count], &ft_strlen);
-		original_int = atoi(original);
-		libft_int = atoi(libft);
 		if (strcmp(original, libft) == 0)
 		{
 			ok++;

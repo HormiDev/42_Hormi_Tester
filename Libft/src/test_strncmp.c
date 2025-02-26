@@ -6,16 +6,11 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 01:46:18 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/02/16 12:42:40 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:56:43 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
-
-int ft_return(int c)
-{
-	return (c);
-}
 
 void segfault_handler(int signum)
 {
@@ -73,11 +68,9 @@ void test_strncmp(int d, int i, int e)
 	int 		ok = 0;
 	int			iregular_ok = 0;
 	int			ko = 0;
-	int 		original_int;
-	int			libft_int;
 	int			count;
 	
-	t_args arg[19] = {
+	t_args arg[25] = {
 		{"Hello World", "Hello World", 14},
 		{"Hello World", "Hello World", 13},
 		{"Hello World", "Hello World", 12},
@@ -92,22 +85,27 @@ void test_strncmp(int d, int i, int e)
 		{"Hello World", "Hello World", 3},
 		{"Hello World", "Hello World", 2},
 		{"Hello World", "Hello World", 1},
+		{"Hello World", "Hello World", 0},
 		{"Hello World", "Hello World", INT_MAX},
 		{"Hello World", "Hello World", 2147483648},
 		{"Hello", "Hello World", 12},
-		{"Hello World", "Hello", 12}
+		{"Hello World", "Hello", 12},
+		{"", "Hello World", 100},
+		{"Hello World", "", 100},
+		{"Hello World", 0, 100},
+		{0, "Hello World", 100},
+		{0, 0, 100},
+		{0, 0, 0}
 	};
 	count = 0;
 	original = (char *)malloc(1024);
 	libft = (char *)malloc(1024);
-	while (count < 19)
+	while (count < 25)
 	{
 		fflush(stdout);
 		exec_function(&original, arg[count].str1, arg[count].str2, arg[count].n, &strncmp);
 		fflush(stdout);
 		exec_function(&libft, arg[count].str1, arg[count].str2, arg[count].n, &ft_strncmp);
-		original_int = atoi(original);
-		libft_int = atoi(libft);
 		if (strcmp(original, libft) == 0)
 		{
 			ok++;
@@ -137,11 +135,11 @@ void test_strncmp(int d, int i, int e)
 	if (!d && !i && !e)
 	{
 		if (ko > 0)
-			printf("%s[ko]%s (%4d/24  )", COLOR_RED, COLOR_RESET, (ok * 2 + iregular_ok));
+			printf("%s[ko]%s (%4d/50  )", COLOR_RED, COLOR_RESET, (ok * 2 + iregular_ok));
 		else if (iregular_ok > 0)
-			printf("%s[ok]%s (%4d/24  )", COLOR_YELLOW, COLOR_RESET, (ok * 2 + iregular_ok));
+			printf("%s[ok]%s (%4d/50  )", COLOR_YELLOW, COLOR_RESET, (ok * 2 + iregular_ok));
 		else
-			printf("%s[ok]%s (%4d/24  )", COLOR_GREEN, COLOR_RESET, (ok * 2 + iregular_ok));
+			printf("%s[ok]%s (%4d/50  )", COLOR_GREEN, COLOR_RESET, (ok * 2 + iregular_ok));
 	}
 }
 

@@ -1,5 +1,5 @@
 # Definir la variable TESTER_DIR usando el directorio absoluto
-TESTER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+TESTER_DIR="$(dirname "$0")/.."
 
 # Definir alias
 alias hormi="${TESTER_DIR}/Hormi_Tester.sh"
