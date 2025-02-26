@@ -79,8 +79,8 @@ if grep -q "Hormi_tester_alias.sh" ~/.bashrc || grep -q "Hormi_tester_alias.sh" 
 	sed -i '/Hormi_tester_alias.sh/d' ~/.bashrc
 	sed -i '/Hormi_tester_alias.sh/d' ~/.zshrc
 fi
-echo "source '${INSTALL_DIR}/bin/Hormi_tester_alias.sh" >> ~/.bashrc
-echo "source '${INSTALL_DIR}/bin/Hormi_tester_alias.sh" >> ~/.zshrc
+echo "source ${INSTALL_DIR}/bin/Hormi_tester_alias.sh" >> ~/.bashrc
+echo "source ${INSTALL_DIR}/bin/Hormi_tester_alias.sh" >> ~/.zshrc
 echo -e "${GREEN}Alias ${BOLD}hormi_tester${NC}${GREEN} created.${NC}"
 echo -e "${CYAN}Reloading the shell...${NC}"
 source ~/.bashrc > /dev/null 2>&1
