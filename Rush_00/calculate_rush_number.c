@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 19:57:54 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/02/23 21:31:26 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/02/26 10:03:29 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int main(int argc, char **argv)
 		printf("\033[0;31mThe login of the group leader is required as an argument\033[0m\n");
 		return (1);
 	}
-	printf("\033[0;36mRush: 0%d\033[0m\n", (argv[1][0] - 'a') % 5);
+	printf("\033[0;36mRush: 0%d\033[0m\n", (argv[1][0] - 'a' + 1) % 5);
 	return (0);
 }

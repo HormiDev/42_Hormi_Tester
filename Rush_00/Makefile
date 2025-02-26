@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/23 00:40:25 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/02/23 21:11:08 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/02/26 09:54:30 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,25 +63,30 @@ build_tests:
 
 rush_00:
 	rm -f $(RUSH_DIR)rush00.out
-	$(CC) $(CFLAGS) $(SRC_RUSH_00) -o $(RUSH_DIR)rush00.out
+	-@$(CC) $(CFLAGS) $(SRC_RUSH_00) -o $(RUSH_DIR)rush00.out
 
 rush_01:
 	rm -f $(RUSH_DIR)rush01.out
-	$(CC) $(CFLAGS) $(SRC_RUSH_01) -o $(RUSH_DIR)rush01.out
+	-@$(CC) $(CFLAGS) $(SRC_RUSH_01) -o $(RUSH_DIR)rush01.out
 
 rush_02:
 	rm -f $(RUSH_DIR)rush02.out
-	$(CC) $(CFLAGS) $(SRC_RUSH_02) -o $(RUSH_DIR)rush02.out
+	-@$(CC) $(CFLAGS) $(SRC_RUSH_02) -o $(RUSH_DIR)rush02.out
 
 rush_03:
 	rm -f $(RUSH_DIR)rush03.out
-	$(CC) $(CFLAGS) $(SRC_RUSH_03) -o $(RUSH_DIR)rush03.out
+	-@$(CC) $(CFLAGS) $(SRC_RUSH_03) -o $(RUSH_DIR)rush03.out
 
 rush_04:
 	rm -f $(RUSH_DIR)rush04.out
 	$(CC) $(CFLAGS) $(SRC_RUSH_04) -o $(RUSH_DIR)rush04.out
 
-build_all_rush: rush_00 rush_01 rush_02 rush_03 rush_04
+build_all_rush:
+	$(MAKE) rush_00
+	$(MAKE) rush_01
+	$(MAKE) rush_02
+	$(MAKE) rush_03
+	$(MAKE) rush_04
 
 fclean: clean
 	rm -fr $(TEST_DIR)

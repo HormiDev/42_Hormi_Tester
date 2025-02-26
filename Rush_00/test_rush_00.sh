@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/23 17:07:11 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/02/24 01:46:13 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/02/26 09:50:47 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,8 +125,8 @@ check_repo()
 	fi
 }
 
-make clean -C "$(dirname "$0")" > /dev/null
+make clean -C "$(dirname "$0")" > /dev/null 2>&1
 check_repo
-make -C "$(dirname "$0")" > /dev/null
+make -C "$(dirname "$0")" > /dev/null 2>&1
 mandatory_rush
 test_rush
