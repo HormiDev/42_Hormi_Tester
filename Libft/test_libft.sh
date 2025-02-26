@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/28 17:28:13 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/02/16 12:14:26 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/02/26 10:15:37 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,7 +122,7 @@ test_strncmp()
 
 run_tests()
 {
-	make -C "$(dirname "$0")" > /dev/null
+	make -C "$(dirname "$0")" > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		echo -e "${RED}Compilation failed${NC}"
 		exit 1

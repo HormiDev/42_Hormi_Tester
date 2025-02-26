@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/23 03:19:24 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/02/16 12:13:19 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/02/26 10:11:10 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,8 +54,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 $(TEST_DIR)/%$(EXTENSION): $(OBJ_DIR)/%.o
 	@mkdir -p $(TEST_DIR)
-	@$(CC) $(CFLAGS) $< $(LIBFT_DIR)/$(LIBFT) -o $@
-	@if [ -f $@ ]; then \
+	@if $(CC) $(CFLAGS) $< $(LIBFT_DIR)/$(LIBFT) -o $@; then \
 		echo "${GREEN}Compiled $@${NC}"; \
 	else \
 		echo "${RED}Failed to compile $@${NC}"; \
