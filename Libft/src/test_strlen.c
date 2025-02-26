@@ -120,7 +120,7 @@ void test_strlen(int d, int i, int e)
 		exec_function(&libft, arg[count], &ft_strlen);
 		original_int = atoi(original);
 		libft_int = atoi(libft);
-		if (original_int == libft_int)
+		if (strcmp(original, libft) == 0)
 		{
 			ok++;
 			if (d)

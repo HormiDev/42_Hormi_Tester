@@ -101,7 +101,7 @@ void test_strchr(int d, int i, int e)
 		exec_function(&libft, arg[count].str, arg[count].c, &ft_strchr);
 		original_int = atoi(original);
 		libft_int = atoi(libft);
-		if (original_int == libft_int)
+		if (strcmp(original, libft) == 0)
 		{
 			ok++;
 			if (d)

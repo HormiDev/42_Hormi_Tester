@@ -21,10 +21,8 @@ NC='\033[0m'
 uninstall() {
 	echo -e "${RED}Uninstalling Hormi_Tester...${NC}"
 	rm -rf "$INSTALL_DIR"
-	sed -i '/alias hormi_tester=/d' ~/.bashrc
-	sed -i '/alias hormi_tester=/d' ~/.zshrc
-	sed -i '/alias hormi=/d' ~/.bashrc
-	sed -i '/alias hormi=/d' ~/.zshrc
+	sed -i '/Hormi_tester_alias.sh/d' ~/.bashrc
+	sed -i '/Hormi_tester_alias.sh/d' ~/.zshrc
 	echo -e "${GREEN}Hormi_Tester has been uninstalled.${NC}"
 }
 

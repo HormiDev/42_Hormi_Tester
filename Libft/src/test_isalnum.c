@@ -76,7 +76,7 @@ void test_isalnum(int d, int i, int e)
 		exec_function(&libft, arg, &ft_isalnum);
 		original_int = atoi(original);
 		libft_int = atoi(libft);
-		if (original_int == libft_int)
+		if (strcmp(original, libft) == 0)
 		{
 			ok++;
 			if (d)

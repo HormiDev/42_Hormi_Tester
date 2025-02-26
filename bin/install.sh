@@ -74,28 +74,17 @@ else
 fi
 
 # Create alias
-echo -e "${CYAN}Creating alias...${NC}"
-if grep -q "alias hormi_tester=" ~/.bashrc || grep -q "alias hormi_tester=" ~/.zshrc; then
-	echo -e "${GREEN}The hormi_tester alias already exists. Removing...${NC}"
-	sed -i '/alias hormi_tester=/d' ~/.bashrc
-	sed -i '/alias hormi_tester=/d' ~/.zshrc
-else
-	echo -e "${CYAN}Creating hormi_tester alias...${NC}"
+if grep -q "Hormi_tester_alias.sh" ~/.bashrc || grep -q "Hormi_tester_alias.sh" ~/.zshrc; then
+	echo -e "${GREEN}The Hormi_tester_alias.sh already exists. Removing...${NC}"
+	sed -i '/Hormi_tester_alias.sh/d' ~/.bashrc
+	sed -i '/Hormi_tester_alias.sh/d' ~/.zshrc
 fi
-
-if grep -q "alias hormi=" ~/.bashrc || grep -q "alias hormi=" ~/.zshrc; then
-	sed -i '/alias hormi=/d' ~/.bashrc
-	sed -i '/alias hormi=/d' ~/.zshrc
-fi
-echo "alias hormi_tester='${INSTALL_DIR}/Hormi_Tester.sh'" >> ~/.bashrc
-echo "alias hormi_tester='${INSTALL_DIR}/Hormi_Tester.sh'" >> ~/.zshrc
-echo "alias hormi'=${INSTALL_DIR}/Hormi_Tester.sh'" >> ~/.bashrc
-echo "alias hormi'=${INSTALL_DIR}/Hormi_Tester.sh'" >> ~/.zshrc
+echo "source '=${INSTALL_DIR}/bin/Hormi_tester_alias.sh" >> ~/.bashrc
+echo "source '=${INSTALL_DIR}/bin/Hormi_tester_alias.sh" >> ~/.zshrc
 echo -e "${GREEN}Alias ${BOLD}hormi_tester${NC}${GREEN} created.${NC}"
-echo -e "${GREEN}Alias ${BOLD}hormi${NC}${GREEN} created.${NC}" 
 echo -e "${CYAN}Reloading the shell...${NC}"
-source ~/.zshrc > /dev/null 2>&1
 source ~/.bashrc > /dev/null 2>&1
+source ~/.zshrc > /dev/null 2>&1
 echo -e "${GREEN}Alias created.${NC}"
 
 # Completion message
