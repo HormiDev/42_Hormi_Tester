@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/28 17:28:13 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/03/05 01:24:47 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/03/05 13:51:05 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -129,6 +129,15 @@ test_bzero()
 	fi
 }
 
+test_memcpy()
+{
+	if [ -f "$TESTS_DIR/test_memcpy.test" ]; then
+		$TESTS_DIR/test_memcpy.test "$@"
+	else
+		echo -e "${RED}memcpy test is not compiled${NC}"
+	fi
+}
+
 run_tests()
 {
 	make -C "$(dirname "$0")" > /dev/null 2>&1
@@ -186,6 +195,10 @@ run_tests()
 			shift
 			test_bzero "$@"
 			;;
+		memcpy)
+			shift
+			test_memcpy "$@"
+			;;
 		*)
 			test_isalpha "$@"
 			test_isdigit "$@"
@@ -199,6 +212,7 @@ run_tests()
 			test_strrchr "$@"
 			test_strncmp "$@"
 			test_bzero "$@"
+			test_memcpy "$@"
 			;;
 	esac
 }

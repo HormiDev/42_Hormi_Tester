@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 00:42:26 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/03/05 13:06:32 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:16:19 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,14 +122,14 @@ void test_bzero(int d, int i, int e)
 				ko++;
 				if (e || d)
 				{
-					printf("%s[ko]%s[bzero: %15s][ft_bzero: %15s] void *: \"%s\" size_t: %zu \n", COLOR_GREEN, COLOR_RESET, original, libft, (char *)arg[count].s, arg[count].n);
+					printf("%s[ko]%s[bzero: %15s][ft_bzero: %15s] void *: \"%s\" size_t: %zu \n", COLOR_RED, COLOR_RESET, original, libft, (char *)arg[count].s, arg[count].n);
 				}
 			}
 			else
 			{
 				ko++;
 				if (e || d)
-					printf("%s[ko]%s[bzero: %15s][ft_bzero: %15s] void *: \"%s\" size_t: %zu \n", COLOR_GREEN, COLOR_RESET, original, libft, (char *)arg[count].s, arg[count].n);
+					printf("%s[ko]%s[bzero: %15s][ft_bzero: %15s] void *: \"%s\" size_t: %zu \n", COLOR_RED, COLOR_RESET, original, libft, (char *)arg[count].s, arg[count].n);
 			}
 		}
 		count++;
