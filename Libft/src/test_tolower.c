@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 02:11:02 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/02/15 00:50:00 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/03/05 01:30:07 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void test_tolower(int d, int i, int e)
 	int 	ok = 0;
 	int		iregular_ok = 0;
 	int		ko = 0;
-	int 	original_int;
 	int		libft_int;
 
 	original = (char *)malloc(1024);
@@ -74,7 +73,6 @@ void test_tolower(int d, int i, int e)
 		exec_function(&original, arg, &tolower);
 		fflush(stdout);
 		exec_function(&libft, arg, &ft_tolower);
-		original_int = atoi(original);
 		libft_int = atoi(libft);
 		if (strcmp(original, libft) == 0)
 		{

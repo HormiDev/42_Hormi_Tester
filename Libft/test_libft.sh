@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/28 17:28:13 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/02/26 10:15:37 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/03/05 01:24:47 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,6 +120,15 @@ test_strncmp()
 	fi
 }
 
+test_bzero()
+{
+	if [ -f "$TESTS_DIR/test_bzero.test" ]; then
+		$TESTS_DIR/test_bzero.test "$@"
+	else
+		echo -e "${RED}bzero test is not compiled${NC}"
+	fi
+}
+
 run_tests()
 {
 	make -C "$(dirname "$0")" > /dev/null 2>&1
@@ -173,6 +182,10 @@ run_tests()
 			shift
 			test_strncmp "$@"
 			;;
+		bzero)
+			shift
+			test_bzero "$@"
+			;;
 		*)
 			test_isalpha "$@"
 			test_isdigit "$@"
@@ -185,6 +198,7 @@ run_tests()
 			test_strchr "$@"
 			test_strrchr "$@"
 			test_strncmp "$@"
+			test_bzero "$@"
 			;;
 	esac
 }
