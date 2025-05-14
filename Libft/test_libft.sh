@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    test_libft.sh                                      :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ide-dieg <ide-dieg@student.42madrid>       +#+  +:+       +#+         #
+#    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/28 17:28:13 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/03/05 13:51:05 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/05/14 20:15:02 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -138,6 +138,15 @@ test_memcpy()
 	fi
 }
 
+test_memchr()
+{
+	if [ -f "$TESTS_DIR/test_memchr.test" ]; then
+		$TESTS_DIR/test_memchr.test "$@"
+	else
+		echo -e "${RED}memchr test is not compiled${NC}"
+	fi
+}
+
 run_tests()
 {
 	make -C "$(dirname "$0")" > /dev/null 2>&1
@@ -199,6 +208,10 @@ run_tests()
 			shift
 			test_memcpy "$@"
 			;;
+		memchr)
+			shift
+			test_memchr "$@"
+			;;
 		*)
 			test_isalpha "$@"
 			test_isdigit "$@"
@@ -213,6 +226,7 @@ run_tests()
 			test_strncmp "$@"
 			test_bzero "$@"
 			test_memcpy "$@"
+			test_memchr "$@"
 			;;
 	esac
 }

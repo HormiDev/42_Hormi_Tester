@@ -44,7 +44,7 @@ print_header() {
 
 execute_test() {
 	ARGUMENTS_FOR_HELP=("-h" "--help" "help" "h" "?" "man")
-	ARGUMENTS_FOR_LIBFT=("libft" "isalpha" "isdigit" "isalnum" "isascii" "isprint" "toupper" "tolower" "strlen" "memset" "bzero" "memcpy" "memccpy" "memmove" "memchr" "memcmp" "strlcpy" "strlcat" "strchr" "strrchr" "strncmp" "strnstr" "atoi" "calloc" "strdup")
+	ARGUMENTS_FOR_LIBFT=("libft" "isalpha" "isdigit" "isalnum" "isascii" "isprint" "toupper" "tolower" "strlen" "memset" "bzero" "memcpy" "memccpy" "memmove" "memchr" "memcmp" "strlcpy" "strlcat" "strchr" "strrchr" "strncmp" "strnstr" "atoi" "calloc" "strdup" "memchr")
 	ARGUMENTS_FOR_RUSH00=("rush00" "rush0" "rush_00" "rush 00", "rush")
 	local arg="$1"
 	if [[ " ${ARGUMENTS_FOR_LIBFT[@],,} " =~ " ${arg,,} " ]]; then
