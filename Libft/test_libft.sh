@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/28 17:28:13 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/05/14 20:15:02 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/05/20 01:39:52 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,6 +147,24 @@ test_memchr()
 	fi
 }
 
+test_memcmp()
+{
+	if [ -f "$TESTS_DIR/test_memcmp.test" ]; then
+		$TESTS_DIR/test_memcmp.test "$@"
+	else
+		echo -e "${RED}memcmp test is not compiled${NC}"
+	fi
+}
+
+test_memmove()
+{
+	if [ -f "$TESTS_DIR/test_memmove.test" ]; then
+		$TESTS_DIR/test_memmove.test "$@"
+	else
+		echo -e "${RED}memmove test is not compiled${NC}"
+	fi
+}
+
 run_tests()
 {
 	make -C "$(dirname "$0")" > /dev/null 2>&1
@@ -212,6 +230,14 @@ run_tests()
 			shift
 			test_memchr "$@"
 			;;
+		memcmp)
+			shift
+			test_memcmp "$@"
+			;;
+		memmove)
+			shift
+			test_memmove "$@"
+			;;
 		*)
 			test_isalpha "$@"
 			test_isdigit "$@"
@@ -227,6 +253,8 @@ run_tests()
 			test_bzero "$@"
 			test_memcpy "$@"
 			test_memchr "$@"
+			test_memcmp "$@"
+			test_memmove "$@"
 			;;
 	esac
 }

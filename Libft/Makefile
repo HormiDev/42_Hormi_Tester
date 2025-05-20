@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/23 03:19:24 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/05/14 20:16:15 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/05/20 02:43:20 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,9 @@ SRC =	test_isalpha.c \
 		test_bzero.c \
 		test_memcpy.c \
 		test_memchr.c \
+		test_memcmp.c \
+		test_memmove.c \
+	#	test_strlcpy.c \
 
 LIBFT = libft.a
 
