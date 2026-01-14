@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_tester.h                                     :+:      :+:    :+:   */
+/*   ft_print_tester.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 01:31:05 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/10/30 14:42:56 by ide-dieg         ###   ########.fr       */
+/*   Created: 2025/10/29 21:20:42 by ide-dieg          #+#    #+#             */
+/*   Updated: 2025/10/30 14:52:21 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_TESTER_H
-# define LIBFT_TESTER_H
+#ifndef FT_PRINT_TESTER_H
+# define FT_PRINT_TESTER_H
 
-# include "libft.h"
 # include <limits.h>
 # include <stdio.h>
 # include <ctype.h>
@@ -32,5 +31,7 @@
 # define COLOR_CYAN    "\x1b[36m"
 # define COLOR_MAGENTA "\x1b[35m"
 # define COLOR_BOLD    "\x1b[1m"
+
+int	ft_printf(char const *, ...);
 
 #endif

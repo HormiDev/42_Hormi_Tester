@@ -45,7 +45,10 @@ print_header() {
 execute_test() {
 	ARGUMENTS_FOR_HELP=("-h" "--help" "help" "h" "?" "man")
 	ARGUMENTS_FOR_LIBFT=("libft" "isalpha" "isdigit" "isalnum" "isascii" "isprint" "toupper" "tolower" "strlen" "memset" "bzero" "memcpy" "memccpy" "memmove" "memchr" "memcmp" "strlcpy" "strlcat" "strchr" "strrchr" "strncmp" "strnstr" "atoi" "calloc" "strdup" "memchr")
+	ARGUMENTS_FOR_FT_PRINTF=("ft_printf" "printf")
 	ARGUMENTS_FOR_RUSH00=("rush00" "rush0" "rush_00" "rush 00", "rush")
+	ARGUMENTS_FOR_CPP_00=("CPP_Module_00" "cpp_00" "cpp00" "cpp 00" "cpp0")
+	ARGUMENTS_FOR_CPP_01=("CPP_Module_01" "cpp_01" "cpp01" "cpp 01" "cpp1")
 	local arg="$1"
 	if [[ " ${ARGUMENTS_FOR_LIBFT[@],,} " =~ " ${arg,,} " ]]; then
 		print_header
@@ -58,6 +61,18 @@ execute_test() {
 		print_header
 		echo -e "${GREEN}Executing tests for...${NC}"
 		${TESTER_DIR}/Rush_00/test_rush_00.sh "$@"
+#	elif [[ " ${ARGUMENTS_FOR_FT_PRINTF[@],,} " =~ " ${arg,,} " ]]; then
+#		print_header
+#		echo -e "${GREEN}Executing tests for...${NC}"
+#		${TESTER_DIR}/Ft_printf/test_ft_printf.sh "$@"
+#	elif [[ " ${ARGUMENTS_FOR_CPP_00[@],,} " =~ " ${arg,,} " ]]; then
+#		print_header
+#		echo -e "${GREEN}Executing tests for...${NC}"
+#		${TESTER_DIR}/CPP_Module_00/test_cpp_module_00.sh "$@"
+	elif [[ " ${ARGUMENTS_FOR_CPP_01[@],,} " =~ " ${arg,,} " ]]; then
+		print_header
+		echo -e "${GREEN}Executing tests for...${NC}"
+		${TESTER_DIR}/CPP_Module_01/test_cpp_module_01.sh "$@"
 	else
 		print_hormidev_header
 		echo -e "${RED}unrecognized project...${NC}"
