@@ -65,10 +65,10 @@ execute_test() {
 #		print_header
 #		echo -e "${GREEN}Executing tests for...${NC}"
 #		${TESTER_DIR}/Ft_printf/test_ft_printf.sh "$@"
-#	elif [[ " ${ARGUMENTS_FOR_CPP_00[@],,} " =~ " ${arg,,} " ]]; then
-#		print_header
-#		echo -e "${GREEN}Executing tests for...${NC}"
-#		${TESTER_DIR}/CPP_Module_00/test_cpp_module_00.sh "$@"
+	elif [[ " ${ARGUMENTS_FOR_CPP_00[@],,} " =~ " ${arg,,} " ]]; then
+		print_header
+		echo -e "${GREEN}Executing tests for...${NC}"
+		${TESTER_DIR}/CPP_Module_00/test_cpp_module_00.sh "$@"
 	elif [[ " ${ARGUMENTS_FOR_CPP_01[@],,} " =~ " ${arg,,} " ]]; then
 		print_header
 		echo -e "${GREEN}Executing tests for...${NC}"

@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/13 20:58:05 by ide-dieg          #+#    #+#              #
-#    Updated: 2026/01/13 21:46:19 by ide-dieg         ###   ########.fr        #
+#    Updated: 2026/01/23 00:26:41 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ test_05()
 
 run_tests()
 {
-	echo -e "${GREEN}Executing tests for CPP Module 01...${NC}"
+	echo -e "${GREEN}CPP Module 01...${NC}"
 	
 	shift
 	case "$1" in
