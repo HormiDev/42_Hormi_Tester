@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/23 00:03:13 by ide-dieg          #+#    #+#              #
-#    Updated: 2026/01/23 01:43:02 by ide-dieg         ###   ########.fr        #
+#    Updated: 2026/01/28 13:26:07 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,34 @@ NC='\033[0m'
 
 AUTHORIZED_FILES=("Makefile" "megaphone.cpp")
 
+#flags
+DETAIL_FLAG=false
+ERROR_FLAG=false
+IRREGULAR_FLAG=false
+
 # Variables
 TESTS_DIR="$(dirname "$0")"
+EX_DIR="ex00"
 
-echo -e "${GREEN}Running tests for cpp00_00...${NC}"
+check_flags()
+{
+	for arg in "$@"; do
+		case $arg in
+			--detail | -d)
+				DETAIL_FLAG=true
+				;;
+			--error | -e)
+				ERROR_FLAG=true
+				;;
+			--irregular | -i)
+				IRREGULAR_FLAG=true
+				;;
+			*)
+				echo -e "${RED}Unknown flag: $arg${NC}"
+				;;
+		esac
+	done
+}
 
 first_bin()
 {
@@ -73,13 +97,23 @@ test()
 	fi
 	if [ "$output" == "$2" ]; then
 		echo -e -n "${GREEN}"[OK]"${NC}"
-		echo -e "${GREEN}Test passed for input '$1': Output '$output' matches expected '$2'${NC}"
+		if [ "$DETAIL_FLAG" = true ]; then
+			echo -e "Test passed for input '$1': \nYour output:   '${GREEN}$output${NC}'\nTest expected: '$2''\n"
+		fi
 	else
 		echo -e -n "${RED}"[KO]"${NC}"
-		echo -e "${RED}Test failed for input '$1': Output '$output' does not match expected '$2'${NC}"
+		if [ "$DETAIL_FLAG" = true ] || [ "$ERROR_FLAG" = true ]; then
+			echo -e "Test failed for input '$1': \nYour output:   '${RED}$output${NC}'\nTest expected: '$2''\n"
+		fi
 	fi
 }
+echo $@
 
+check_flags
+
+echo -e "Running tests for cpp00_00$..."
+
+cd $EX_DIR || (echo -e "${RED}Directory $EX_DIR not found.${NC}"; exit 1)
 check_authorized_files
 
 make re >/dev/null 2>&1
@@ -92,8 +126,10 @@ test "42madrid" "42MADRID"
 test "TeStInG 1 2 3" "TESTING 1 2 3"
 test "12345" "12345"
 test "mixed CASE 123 !" "MIXED CASE 123 !"
-test "' !\"#$%&/()*+,-./:;<=>?@[\\]^_`{|}~0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzñÑçÇ¡¿" "' !\"#$%&/()*+,-./:;<=>?@[\\]^_`{|}~0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZÑÑÇÇ¡¿"
+test "~0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdehghijklmnopqrstuvwxyzñÑçÇ" "~0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZÑÑÇÇ"
 test "" "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
 make fclean >/dev/null 2>&1
 
 echo -e "\n${GREEN}Tests completed for cpp00_00.${NC}"
+
+cd ..
