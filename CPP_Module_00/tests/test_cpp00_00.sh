@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/23 00:03:13 by ide-dieg          #+#    #+#              #
-#    Updated: 2026/01/28 13:26:07 by ide-dieg         ###   ########.fr        #
+#    Updated: 2026/01/29 21:06:25 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,6 +128,7 @@ test "12345" "12345"
 test "mixed CASE 123 !" "MIXED CASE 123 !"
 test "~0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdehghijklmnopqrstuvwxyzñÑçÇ" "~0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZÑÑÇÇ"
 test "" "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
+test "\"\"" "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
 make fclean >/dev/null 2>&1
 
 echo -e "\n${GREEN}Tests completed for cpp00_00.${NC}"
